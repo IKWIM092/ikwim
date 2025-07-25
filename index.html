@@ -1,0 +1,274 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IKWIM092 | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,500&family=Roboto&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    :root {
+      --bg-color: #0d0d0d;
+      --text-color: #ffffff;
+      --accent: #800000;
+      --hover-accent: #cc0000;
+    }
+
+    body.light {
+      --bg-color: #ffffff;
+      --text-color: #0d0d0d;
+      --accent: #b30000;
+      --hover-accent: #990000;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.4s ease, color 0.4s ease;
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 60px auto;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+      background-color: var(--bg-color);
+      box-shadow: none;
+      border-radius: 0;
+    }
+
+    .profile-pic {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--accent);
+      box-shadow: 0 0 5px rgba(204, 0, 0, 0.4);
+    }
+
+    .bio-section {
+      background-color: rgba(255, 255, 255, 0.03);
+      padding: 20px;
+      border-radius: 8px;
+      margin: 30px auto 0;
+      display: inline-block;
+    }
+
+    .bio {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.05rem;
+      line-height: 1.5;
+      text-align: center;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+      padding: 10px 20px;
+      border: 1px solid var(--hover-accent);
+      border-radius: 6px;
+      box-shadow: 0 0 10px var(--hover-accent);
+    }
+
+    .socials {
+      margin-top: 20px;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+    }
+
+    .socials a i {
+      font-size: 24px;
+      margin: 0 12px;
+      color: var(--hover-accent);
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .socials a i:hover {
+      transform: scale(1.2);
+      color: #ffffff;
+    }
+
+    .socials span {
+      display: inline-block;
+      margin: 0 10px;
+    }
+
+    .passion-section {
+      margin-top: 100px;
+      text-align: center;
+    }
+
+    .passion {
+      font-family: 'Eras ITC', 'Trebuchet MS', sans-serif;
+      font-size: 1.1rem;
+      color: var(--text-color);
+      padding: 12px 20px;
+      border: 1px solid var(--hover-accent);
+      border-radius: 6px;
+      display: inline-block;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+    }
+
+    .infinity {
+      font-size: 2rem;
+      color: var(--hover-accent);
+      animation: glow 2s infinite alternate, spin 4s linear infinite;
+      display: inline-block;
+    }
+
+    .infinity-float {
+      position: absolute;
+      font-size: 1.5rem;
+      color: #ff4c4c;
+      text-shadow: 0 0 10px rgba(255, 76, 76, 0.5);
+      opacity: 0.13;
+    }
+
+    @keyframes floatFade {
+      0% {
+        transform: translateY(0);
+        opacity: 0.4;
+      }
+      50% {
+        transform: translateY(-10px);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 0.4;
+      }
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px var(--hover-accent); }
+      to { text-shadow: 0 0 20px var(--hover-accent); }
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0px); }
+    }
+
+    @keyframes glow-border {
+      0% {
+        box-shadow: 0 0 5px var(--hover-accent);
+        opacity: 1;
+      }
+      100% {
+        box-shadow: 0 0 20px var(--hover-accent);
+        opacity: 0.7;
+      }
+    }
+
+    .toggle-wrapper {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 100;
+    }
+
+    .toggle {
+      width: 60px;
+      height: 30px;
+      background-color: var(--accent);
+      border-radius: 30px;
+      position: relative;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .toggle::before {
+      content: "";
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      background-color: var(--text-color);
+      border-radius: 50%;
+      top: 3px;
+      left: 3px; /* position when OFF (dark mode) */
+      transition: left 0.3s ease;
+    }
+
+    body.light .toggle::before {
+      left: 33px; /* position when ON (light mode) */
+    }
+
+    body.light .toggle {
+      background-color: #ddd;
+    }
+
+    @keyframes blink {
+      0% { opacity: 1; }
+      100% { opacity: 0.6; }
+    }
+  </style>
+</head>
+<body>
+  <div class="toggle-wrapper">
+    <div class="toggle"></div>
+  </div>  <div class="container">
+    <img src="profile.jpg" alt="Profile Picture" class="profile-pic" />
+    <div style="font-size: 1.2rem; margin-top: 10px;">Md Sayed Sultan Fardin</div>
+    <section class="bio-section">
+      <div class="bio">
+        Rooted <br />
+        Being Aloof
+      </div>
+    </section>
+    <div class="socials">
+      <span>
+        <a href="https://facebook.com/IKWIM092" target="_blank" title="IKWIM092">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+      </span>
+      <span>
+        <a href="https://instagram.com/ikwim092" target="_blank" title="ikwim092">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </span>
+      <span>
+        <a href="mailto:ikwim092@gmail.com" target="_blank" title="ikwim092@gmail.com">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </span>
+    </div>
+    <section class="passion-section">
+      <div class="passion">
+        Passionate about Cybersecurity & Ethical Hacking 
+      </div>
+    </section>
+  </div>
+  <div class="infinity-float" style="top: 10%; left: 20%; animation-delay: 0s;">&#8734;</div>
+  <div class="infinity-float" style="top: 20%; left: 10%; animation-delay: 1.2s;">&#8734;</div>
+  <div class="infinity-float" style="top: 35%; left: 80%; animation-delay: 2.4s;">&#8734;</div>
+  <div class="infinity-float" style="top: 50%; left: 70%; animation-delay: 3.6s;">&#8734;</div>
+  <div class="infinity-float" style="top: 65%; left: 50%; animation-delay: 4.8s;">&#8734;</div>
+  <div class="infinity-float" style="top: 80%; left: 30%; animation-delay: 6s;">&#8734;</div>
+  <div class="infinity-float" style="top: 90%; left: 15%; animation-delay: 7.2s;">&#8734;</div>
+  <div class="infinity-float" style="top: 15%; left: 60%; animation-delay: 8.4s;">&#8734;</div>
+  <div class="infinity-float" style="top: 25%; left: 35%; animation-delay: 9.6s;">&#8734;</div>
+  <div class="infinity-float" style="top: 45%; left: 25%; animation-delay: 10.8s;">&#8734;</div>
+  <div class="infinity-float" style="top: 70%; left: 75%; animation-delay: 12s;">&#8734;</div>
+  <div class="infinity-float" style="top: 85%; left: 60%; animation-delay: 13.2s;">&#8734;</div>
+</script>
+  <script>
+    document.addEventListener("mousemove", (e) => {
+      document.body.style.background = `radial-gradient(circle at ${e.clientX}px ${e.clientY}px, #1a0000 0%, #0d0d0d 40%)`;
+    });
+    document.querySelector('.toggle').addEventListener('click', () => {
+      if (document.body.classList.contains('light')) {
+        document.body.classList.remove('light'); // Switch to dark mode (OFF)
+      } else {
+        document.body.classList.add('light'); // Switch to light mode (ON)
+      }
+    });
+  </script>
+</body>
+</html>
